@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public bool onFloor, onZone1;
     public float jumpPressure, minJump, maxJumpPressure, Xmovement;
     private Rigidbody2D rb;
+    public GameObject wololo;
     
 
    
@@ -24,10 +25,10 @@ public class Player : MonoBehaviour
     
     void Update()
     { 
-        if (onFloor)
+        if (rb.velocity.magnitude==0)
         {
             
-            if (Input.GetButton("Jump"))
+            if ((Input.GetButton("Player1")&&gameObject.name=="Player1")||(Input.GetButton("Player2")&&gameObject.name=="Player2"))
             {
                 if (jumpPressure < maxJumpPressure)
                 {
@@ -59,14 +60,19 @@ public class Player : MonoBehaviour
         }
         else
         {
-
+            if ((Input.GetButton("Player1") && gameObject.name == "Player1") || (Input.GetButton("Player2") && gameObject.name == "Player2"))
+            {
+                wololo.SetActive(true);
+            }
         }
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Floor")
+        if(rb.velocity.magnitude > 0 && (Input.GetButton("Player1") && gameObject.name == "Player1") || (Input.GetButton("Player2") && gameObject.name == "Player2"))
         {
-            onFloor = true;
+            wololo.SetActive(true);
         }
     }
+    
 }
