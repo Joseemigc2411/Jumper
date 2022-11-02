@@ -7,6 +7,8 @@ TagManager:
   - Floor
   - OrientationZone1
   - OrientationZone2
+  - abyss
+  - wall
   layers:
   - Default
   - TransparentFX
